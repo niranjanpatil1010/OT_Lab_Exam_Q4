@@ -1,0 +1,20 @@
+Phase 1 - Grover Adaptive Search: 99 rounds, 1213 Grover iterations (oracle calls)
+  best state found: 00001111 | 000  E = -3.5746
+
+Phase 2 - amplify E <= -3.5746 : 1 marked state(s), optimal iterations r = floor(pi/4*sqrt(N/k)) = 35
+  Probability of the best answer after Grover: 1.0000 (uniform guess would be 0.00049)
+
+GROVER RESULT (4096 shots)
+  best bit-string : 00001111 | 000
+  pumps to inspect: [5, 6, 7, 8]
+  energy          : -3.5746
+  appeared        : 4096 / 4096 shots (100.0%)
+  next most frequent outcomes:
+     11111111 | 111  E=387.0401  count=0
+     11110101 | 010  E=68.8933  count=0
+     01000101 | 010  E=0.0487  count=0
+
+BRUTE FORCE (all 2048 states): 00001111 | 000  E = -3.5746
+Grover == brute force ? YES
+Cost: brute force = 2048 energy evaluations; Grover (final stage) = 35 oracle calls, search total = 1248. Quadratic speed-up in theory ~ sqrt(N)=45.
+(Simulator note: on a real device the oracle is a reversible circuit computing E<threshold; here it is simulated by a classical energy table.)

@@ -1,0 +1,9 @@
+CPU cores available: 4 | states: 2048 | sweep repeated 200 times
+
+workers  time (s)   speed-up   efficiency
+1        1.283      1.00       100.0     %
+2        0.755      1.70       85.0      %
+4        0.936      1.37       34.3      %
+
+All parallel energies match the vectorised NumPy result: True
+speed-up S = T1/Tp ; efficiency E = S/p

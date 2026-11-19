@@ -1,0 +1,27 @@
+QUBO (minimise):  E(x) = - sum_i p_i x_i  +  P * ( sum_i c_i x_i + sum_j w_j s_j - B )^2
+  p_i = MLP failure probability, c_i = inspection hours, B = 6, P = 2.0
+  slack bits s_j with weights w = [1, 2, 4] turn 'cost <= B' into an equality (8 pumps + 3 slack = 11 bits)
+  expanded: Q_ii = P(a_i^2 - 2Ba_i) [- p_i for pumps],  Q_ij = 2P a_i a_j (i<j),  offset = P B^2 = 72.0
+
+p = [0.05 0.23 0.45 0.65 0.93 0.74 0.92 0.98] 
+c = [1 2 1 3 1 1 2 2] 
+
+Q matrix (11x11, upper triangular):
+ [[-22.05   8.     4.    12.     4.     4.     8.     8.     4.     8.    16.  ]
+ [  0.   -40.23   8.    24.     8.     8.    16.    16.     8.    16.    32.  ]
+ [  0.     0.   -22.45  12.     4.     4.     8.     8.     4.     8.    16.  ]
+ [  0.     0.     0.   -54.65  12.    12.    24.    24.    12.    24.    48.  ]
+ [  0.     0.     0.     0.   -22.93   4.     8.     8.     4.     8.    16.  ]
+ [  0.     0.     0.     0.     0.   -22.74   8.     8.     4.     8.    16.  ]
+ [  0.     0.     0.     0.     0.     0.   -40.92  16.     8.    16.    32.  ]
+ [  0.     0.     0.     0.     0.     0.     0.   -40.98   8.    16.    32.  ]
+ [  0.     0.     0.     0.     0.     0.     0.     0.   -22.     8.    16.  ]
+ [  0.     0.     0.     0.     0.     0.     0.     0.     0.   -40.    32.  ]
+ [  0.     0.     0.     0.     0.     0.     0.     0.     0.     0.   -64.  ]]
+
+QUBO lowest energy over all 2048 strings: E = -3.5746 at 00001111 | 000
+Direct constrained brute force (cost<=6, max sum p): pumps [5, 6, 7, 8], benefit 3.5746, hours used 6
+QUBO minimum == constrained optimum ?   YES - verified
+Slack consistent (hours + slack = 6): True
+
+Selected pumps to inspect: [5, 6, 7, 8]  (hours used 6 of 6)
